@@ -89,13 +89,13 @@ typedef enum {
 
 typedef enum {
     FARGS_ONE,
-    FARGS_MANY,
+    FARGS_LIST,
 } FnArgsKind;
 
 typedef union {
     FnArgsKind kind;
     struct { FnArgsKind kind; Ident id; } one;
-    struct { FnArgsKind kind; IdentList ids; } many;
+    struct { FnArgsKind kind; IdentList ids; } list;
 } FnArgs;
 
 typedef enum {

@@ -206,20 +206,20 @@ DES_SIG(Expr) {
 DES_SIG(FnArgs) {
     u8 tag = DES(u8);
     FnArgs args = {
-        .kind = tag == 0 ? FARGS_ONE : FARGS_MANY,
+        .kind = tag == 0 ? FARGS_ONE : FARGS_LIST,
     };
     switch (args.kind) {
         case FARGS_ONE:
             args.one.id = DES(Ident);
             break;
-        case FARGS_MANY: {
+        case FARGS_LIST: {
             u8 len = tag - 1;
-            args.many.ids = (IdentList){
+            args.list.ids = (IdentList){
                 .len = len,
                 .data = malloc(sizeof(Ident) * len),
             };
             for (u8 i = 0; i < len; i++) {
-                args.many.ids.data[i] = DES(Ident);
+                args.list.ids.data[i] = DES(Ident);
             }
             break;
         }
@@ -418,9 +418,9 @@ PRINT_SIG(FnArgs) {
             P(Ident, v.one.id);
             printf("\n%*s)", depth * 4, "");
             break;
-        case FARGS_MANY:
-            printf("%*sArgs (\n", depth * 4, "");
-            P(IdentList, v.many.ids);
+        case FARGS_LIST:
+            printf("%*sList (\n", depth * 4, "");
+            P(IdentList, v.list.ids);
             printf("\n%*s)", depth * 4, "");
             break;
         default:
