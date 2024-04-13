@@ -341,6 +341,7 @@ PRINT_SIG(Builtin) {
         BUILTIN_CASE(B_READ)
         BUILTIN_CASE(B_WRITE)
         BUILTIN_CASE(B_CLOSE)
+        BUILTIN_CASE(B_PRINT)
         default:
             TRAP();
     }

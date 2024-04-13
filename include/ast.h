@@ -66,7 +66,8 @@ typedef enum {
     B_OPEN,
     B_READ,
     B_WRITE,
-    B_CLOSE
+    B_CLOSE,
+    B_PRINT,
 } Builtin;
 
 typedef enum {
